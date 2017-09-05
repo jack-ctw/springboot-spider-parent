@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.ctw.spider.dao.mapper.MovieScoreMapper">
+
+	<select id="queryMovieScoreByUserCode" parameterType="string"
+		resultType="movieScore">
+		select * from movieScore where userCode=#{userCode}
+	</select>
+
+	<select id="queryMovieScoreByMid" parameterType="string"
+		resultType="movieScore">
+		select * from movieScore where mid=#{mid}
+	</select>
+
+	<select id="queryMovieScoreByMidAndUserCore" parameterType="string"
+		resultType="movieScore">
+		select * from movieScore
+		<where>
+			<if test="mid!=null and mid!=''">
+				mid = #{mid}
+			</if>
+			<if test="userCode!=null and userCode!=''">
+				adn userCode = @{userCode}
+			</if>
+		</where>
+	</select>
+</mapper>
